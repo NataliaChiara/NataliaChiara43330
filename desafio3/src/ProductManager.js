@@ -1,7 +1,7 @@
 import fs from "fs";
 
 export default class ProductManager {
-  #id = 0;
+  #id = 10;
   constructor() {
     if (!fs.existsSync("./products.json")) {
       fs.writeFileSync("./products.json", JSON.stringify([]));
@@ -60,18 +60,18 @@ export default class ProductManager {
 const product = new ProductManager();
 
 async function test() {
-  //   console.log(await product.getProducts()); FUNCIONA
-  //   await product.addProduct({
-  //     title: "asd",
-  //     description: "asd",
-  //     price: 1000,
-  //     thumbnail: "ruta de imagen",
-  //     code: "asd",
-  //     stock: 20,
-  //   }); FUNCIONA
-  //   console.log(await product.getProductById(2)); FUNCIONA
-  // await product.updateProduct(10, { title: "asd" }); FUNCIONA
-  // await product.deleteProduct(9); FUNCIONA
+  // console.log(await product.getProducts());
+  // await product.addProduct({
+  //   title: "asd",
+  //   description: "asd",
+  //   price: 1000,
+  //   thumbnail: "ruta de imagen",
+  //   code: "asd",
+  //   stock: 20,
+  // });
+  // console.log(await product.getProductById(2));
+  // await product.updateProduct(10, { title: "asd" });
+  // await product.deleteProduct(9);
 }
 
 // test();
