@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "title": "tokyo revengers",
+        "description": "autor: ken wakui",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a1",
+        "stock": 20
+    },
+    {
+        "id": 2,
+        "title": "chainsaw man",
+        "description": "autor: tatsuki fujimoto",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a2",
+        "stock": 20
+    },
+    {
+        "id": 3,
+        "title": "haikyu",
+        "description": "autor: haruichi furudate",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a3",
+        "stock": 20
+    },
+    {
+        "id": 4,
+        "title": "demon slayer",
+        "description": "autor: koyoharu gotouge",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a4",
+        "stock": 20
+    },
+    {
+        "id": 5,
+        "title": "spy family",
+        "description": "autor: tatsuya endo",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a5",
+        "stock": 20
+    },
+    {
+        "id": 6,
+        "title": "mi vecino metalero",
+        "description": "autor: mamita",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a6",
+        "stock": 20
+    },
+    {
+        "id": 7,
+        "title": "death note",
+        "description": "autor: ohba obata",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a7",
+        "stock": 20
+    },
+    {
+        "id": 8,
+        "title": "fire punch",
+        "description": "autor: tatsuki fujimoto",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a8",
+        "stock": 20
+    },
+    {
+        "id": 9,
+        "title": "blue lock",
+        "description": "autor: munetuki kaneshiro",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "a9",
+        "stock": 20
+    },
+    {
+        "id": 10,
+        "title": "vagabond",
+        "description": "autor: tahehiko inoue",
+        "price": 1000,
+        "thumbnail": "ruta de imagen",
+        "code": "b1",
+        "stock": 20
+    }
+]

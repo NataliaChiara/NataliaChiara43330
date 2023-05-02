@@ -1,6 +1,6 @@
-const fs = require("fs");
+import fs from "fs";
 
-class ProductManager {
+export default class ProductManager {
   #id = 0;
   constructor() {
     if (!fs.existsSync("./products.json")) {
@@ -74,4 +74,4 @@ async function test() {
   // await product.deleteProduct(9); FUNCIONA
 }
 
-test();
+// test();
