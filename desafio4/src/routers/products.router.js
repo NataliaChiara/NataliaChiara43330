@@ -1,6 +1,8 @@
 import { Router } from "express";
 
-const products = [
+let id = 4;
+
+let products = [
   {
     id: 1,
     title: "tokyo revengers",
@@ -40,6 +42,29 @@ productsRouter.get("/", (req, res) => {
   } else {
     res.send(allProducts);
   }
+});
+
+productsRouter.get("/:id", (req, res) => {
+  const idToFind = Number(req.params.id);
+  const allProducts = products;
+  const productIndex = allProducts.findIndex(
+    (product) => product.id === idToFind
+  );
+  if (productIndex === -1) {
+    res.send("No existe");
+  } else {
+    const productFound = allProducts[productIndex];
+    res.send(productFound);
+  }
+});
+
+productsRouter.post("/", (req, res) => {
+  let product = req.body;
+  product.id = id;
+  id++;
+  let allProducts = products;
+  allProducts.push(product);
+  res.status(201).send(allProducts);
 });
 
 export { productsRouter };
