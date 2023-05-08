@@ -1,41 +1,48 @@
 import { Router } from "express";
 
-let id = 4;
+const productsRouter = Router();
+
+let appId = 4;
 
 let products = [
   {
     id: 1,
     title: "tokyo revengers",
     description: "autor: ken wakui",
-    price: 1000,
-    thumbnail: "ruta de imagen",
     code: "a1",
+    price: 1000,
+    status: true,
     stock: 20,
+    category: "libros",
+    thumbnails: ["ruta 1", "ruta 2", "ruta 3"],
   },
   {
     id: 2,
     title: "chainsaw man",
     description: "autor: tatsuki fujimoto",
-    price: 1000,
-    thumbnail: "ruta de imagen",
     code: "a2",
+    price: 1000,
+    status: true,
     stock: 20,
+    category: "libros",
+    thumbnails: ["ruta 1", "ruta 2", "ruta 3"],
   },
   {
     id: 3,
     title: "haikyu",
     description: "autor: haruichi furudate",
-    price: 1000,
-    thumbnail: "ruta de imagen",
     code: "a3",
+    price: 1000,
+    status: true,
     stock: 20,
+    category: "libros",
+    thumbnails: ["ruta 1", "ruta 2", "ruta 3"],
   },
 ];
-const productsRouter = Router();
 
 productsRouter.get("/", (req, res) => {
   let allProducts = products;
-  let limit = req.query.limit;
+  let limit = Number(req.query.limit);
 
   if (limit) {
     res.send(allProducts.slice(0, limit));
@@ -72,8 +79,8 @@ productsRouter.post("/", (req, res) => {
     (product.stock != undefined) &
     (product.category != undefined)
   ) {
-    product.id = id;
-    id++;
+    product.id = appId;
+    appId++;
     let allProducts = products;
     allProducts.push(product);
     res.status(201).send(product);
@@ -84,7 +91,7 @@ productsRouter.post("/", (req, res) => {
 
 productsRouter.put("/", (req, res) => {
   let edit = req.body;
-  let id = edit.id;
+  let id = Number(edit.id);
   let allProducts = products;
 
   if (id != undefined) {
@@ -94,6 +101,23 @@ productsRouter.put("/", (req, res) => {
       res.status(201).send(allProducts);
     } else {
       res.status(400).send("No se encontro el objeto a editar");
+    }
+  } else {
+    res.status(400).send("Id invalido");
+  }
+});
+
+productsRouter.delete("/", (req, res) => {
+  let id = Number(req.body.id);
+  let allProducts = products;
+
+  if (id != undefined) {
+    let index = allProducts.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      allProducts.splice(index, 1);
+      res.status(201).send(allProducts);
+    } else {
+      res.status(400).send("No se encontro el objeto a eliminar");
     }
   } else {
     res.status(400).send("Id invalido");
