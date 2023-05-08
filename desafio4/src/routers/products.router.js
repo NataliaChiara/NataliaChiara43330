@@ -60,11 +60,26 @@ productsRouter.get("/:id", (req, res) => {
 
 productsRouter.post("/", (req, res) => {
   let product = req.body;
-  product.id = id;
-  id++;
-  let allProducts = products;
-  allProducts.push(product);
-  res.status(201).send(allProducts);
+
+  const productCode = products.findIndex((item) => item.code === product.code);
+
+  if (
+    (productCode === -1) &
+    (product.title != undefined) &
+    (product.description != undefined) &
+    (product.price != undefined) &
+    (product.status != undefined) &
+    (product.stock != undefined) &
+    (product.category != undefined)
+  ) {
+    product.id = id;
+    id++;
+    let allProducts = products;
+    allProducts.push(product);
+    res.status(201).send(product);
+  } else {
+    res.status(400).send("invalid code/No ingreso todos los campos");
+  }
 });
 
 export { productsRouter };
