@@ -45,23 +45,23 @@ productsRouter.get("/", (req, res) => {
 });
 
 productsRouter.get("/:id", (req, res) => {
-  const idToFind = Number(req.params.id);
-  const allProducts = products;
-  const productIndex = allProducts.findIndex(
+  let idToFind = Number(req.params.id);
+  let allProducts = products;
+  let productIndex = allProducts.findIndex(
     (product) => product.id === idToFind
   );
   if (productIndex === -1) {
     res.send("No existe");
   } else {
-    const productFound = allProducts[productIndex];
+    let productFound = allProducts[productIndex];
     res.send(productFound);
   }
 });
 
 productsRouter.post("/", (req, res) => {
   let product = req.body;
-
-  const productCode = products.findIndex((item) => item.code === product.code);
+  let allProducts = products;
+  let productCode = allProducts.findIndex((item) => item.code === product.code);
 
   if (
     (productCode === -1) &
@@ -79,6 +79,24 @@ productsRouter.post("/", (req, res) => {
     res.status(201).send(product);
   } else {
     res.status(400).send("invalid code/No ingreso todos los campos");
+  }
+});
+
+productsRouter.put("/", (req, res) => {
+  let edit = req.body;
+  let id = edit.id;
+  let allProducts = products;
+
+  if (id != undefined) {
+    let index = allProducts.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      allProducts[index] = { ...allProducts[index], ...edit };
+      res.status(201).send(allProducts);
+    } else {
+      res.status(400).send("No se encontro el objeto a editar");
+    }
+  } else {
+    res.status(400).send("Id invalido");
   }
 });
 
