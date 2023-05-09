@@ -21,61 +21,48 @@ let carts = [
   },
 ];
 
-cartsRouter.get("/:cid", (req, res) => {
-  let allcarts = carts;
-  let idToFind = Number(req.params.cid);
-  let cartIndex = allcarts.findIndex((cart) => cart.id === idToFind);
-  if (cartIndex === -1) {
-    res.send("No existe");
-  } else {
-    let cartFound = allcarts[cartIndex];
-    res.send(cartFound);
-  }
-});
-
 cartsRouter.post("/", (req, res) => {
-  let allCarts = carts;
   let newCart = {
     id: appId,
     products: [],
   };
   appId++;
-  allCarts.push(newCart);
+  carts.push(newCart);
   res.status(201).send(newCart);
 });
 
-cartsRouter.post("/:cid/product/:pid", (req, res) => {
-  let allCarts = carts;
-  let cartToFind = Number(req.params.cid);
-  let cartIndex = allCarts.findIndex((cart) => cart.id === cartToFind);
-
+cartsRouter.get("/:cid", (req, res) => {
+  let cartIndex = carts.findIndex((cart) => cart.id === Number(req.params.cid));
   if (cartIndex === -1) {
-    res.send("No existe ese id");
+    res.send("No existe un carrito con ese id");
   } else {
-    let cartFound = allCarts[cartIndex];
+    res.send(carts[cartIndex]);
+  }
+});
 
+cartsRouter.post("/:cid/product/:pid", (req, res) => {
+  let cartIndex = carts.findIndex((cart) => cart.id === Number(req.params.cid));
+  if (cartIndex === -1) {
+    res.send("No existe un carrito con ese id");
+  } else {
+    let cartFound = carts[cartIndex];
     let allProducts = cartFound.products;
-    let productToFind = Number(req.params.pid);
     let productIndex = allProducts.findIndex(
-      (product) => product.id === productToFind
+      (product) => product.id === Number(req.params.pid)
     );
 
     if (productIndex === -1) {
-      res.status(400).send("No existe ese producto");
+      res.send("No existe un producto con ese id");
     } else {
       let productFound = allProducts[productIndex];
-
       let newQuantity = req.body.quantity;
       productFound = {
         ...productFound,
         quantity: productFound.quantity + newQuantity,
       };
-
       res.status(201).send(productFound);
     }
   }
 });
-
-// productFound > allProducts > cartFound > allCarts
 
 export { cartsRouter };
