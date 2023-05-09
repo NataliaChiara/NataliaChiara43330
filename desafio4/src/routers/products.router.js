@@ -81,7 +81,6 @@ productsRouter.post("/", (req, res) => {
   ) {
     product.id = appId;
     appId++;
-    let allProducts = products;
     allProducts.push(product);
     res.status(201).send(product);
   } else {
